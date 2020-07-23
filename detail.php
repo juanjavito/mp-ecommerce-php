@@ -58,11 +58,11 @@ if (!isset($_POST['price']) || !isset($_POST['title']) || !isset($_POST['unit'])
     $item->unit_price = $_POST['price'];
     $item->id = "1234";
     $item->description = "Dispositivo móvil de Tienda e-commerce";
-    $item->external_reference="javier.e.a.1998@gmail.com";
-    $item->picture_url=__DIR__.$_POST["img"];
-    
-    echo __DIR__.$_POST["img"];
-    
+    $item->external_reference = "javier.e.a.1998@gmail.com";
+    $item->picture_url = "http://".$_SERVER["HTTP_HOST"] . $_POST["img"];
+    echo "http://" . $_SERVER["HTTP_HOST"] . $_POST["img"];
+   
+
     $payer = new MercadoPago\Payer();
     $payer->name = "Lalo";
     $payer->surname = "Landa";
