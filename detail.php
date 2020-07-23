@@ -59,29 +59,29 @@ if (!isset($_POST['price']) || !isset($_POST['title']) || !isset($_POST['unit'])
     $item->id = "1234";
     $item->description = "Dispositivo móvil de Tienda e-commerce";
     $item->picture_url = "http://" . $_SERVER["HTTP_HOST"] . $_POST["img"];
-     // $item->picture_url = "https://underc0de.org/assets/img/logo-colored.png";
-    
+    // $item->picture_url = "https://underc0de.org/assets/img/logo-colored.png";
+
     $preference->back_urls = array(
-        "success" => "http://" . $_SERVER["HTTP_HOST"]."/success.php",
-        "failure" => "http://" . $_SERVER["HTTP_HOST"]."/failure.php",
-        "pending" => "http://" . $_SERVER["HTTP_HOST"]."/pending.php"
+        "success" => "http://" . $_SERVER["HTTP_HOST"] . "/success.php",
+        "failure" => "http://" . $_SERVER["HTTP_HOST"] . "/failure.php",
+        "pending" => "http://" . $_SERVER["HTTP_HOST"] . "/pending.php"
     );
     $preference->auto_return = "approved";
     $preference->external_reference = "javier.e.a.1998@gmail.com";
-    $preference->notification_url="https://75ebbd6616149cc36bc2e62f111ea66d.m.pipedream.net";
-        
+    $preference->notification_url = "https://75ebbd6616149cc36bc2e62f111ea66d.m.pipedream.net";
+
     $payer = new MercadoPago\Payer();
     $payer->name = "Lalo";
     $payer->surname = "Landa";
     $payer->email = "test_user_63274575@testuser.com";
     $payer->phone = array(
-        "area_code" => "11",
-        "number" => "22223333"
+        "area_code" => 11,
+        "number" => 22223333
     );
     $payer->address = array(
         "street_name" => "False",
         "street_number" => 123,
-        "zip_code" => "1111"
+        "zip_code" => 1111
     );
 
     $preference->payment_methods = array(
@@ -93,9 +93,10 @@ if (!isset($_POST['price']) || !isset($_POST['title']) || !isset($_POST['unit'])
         ),
         "installments" => 6
     );
-    
-    $preference->payer = $payer;
+
     $preference->items = array($item);
+    $preference->payer = $payer;
+
     $preference->save();
     ?>
 
