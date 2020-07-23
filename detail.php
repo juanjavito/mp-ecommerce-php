@@ -58,10 +58,18 @@ if (!isset($_POST['price']) || !isset($_POST['title']) || !isset($_POST['unit'])
     $item->unit_price = $_POST['price'];
     $item->id = "1234";
     $item->description = "Dispositivo móvil de Tienda e-commerce";
-    $item->external_reference = "javier.e.a.1998@gmail.com";
-    $item->picture_url = "http://".$_SERVER["HTTP_HOST"] . $_POST["img"];
-   
-
+    $item->picture_url = "http://" . $_SERVER["HTTP_HOST"] . $_POST["img"];
+     // $item->picture_url = "https://underc0de.org/assets/img/logo-colored.png";
+    
+    $preference->back_urls = array(
+        "success" => "http://" . $_SERVER["HTTP_HOST"]."/success.php",
+        "failure" => "http://" . $_SERVER["HTTP_HOST"]."/failure.php",
+        "pending" => "http://" . $_SERVER["HTTP_HOST"]."/pending.php"
+    );
+    $preference->auto_return = "approved";
+    $preference->external_reference = "javier.e.a.1998@gmail.com";
+    $preference->notification_url="https://75ebbd6616149cc36bc2e62f111ea66d.m.pipedream.net";
+        
     $payer = new MercadoPago\Payer();
     $payer->name = "Lalo";
     $payer->surname = "Landa";
@@ -85,7 +93,7 @@ if (!isset($_POST['price']) || !isset($_POST['title']) || !isset($_POST['unit'])
         ),
         "installments" => 6
     );
-
+    
     $preference->items = array($item);
     $preference->save();
     ?>
@@ -180,13 +188,16 @@ if (!isset($_POST['price']) || !isset($_POST['title']) || !isset($_POST['unit'])
                                             </h3>
                                         </div>
 
-                                        <!--                                        <button type="submit" class="mercadopago-button" formmethod="post">Pagar compra</button>-->
-                                        <form action="/procesar-pago" method="POST">
-                                            <script data-button-label="Pagar la compra"
-                                                    src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
-                                                    data-preference-id="<?php echo $preference->id; ?>">
-                                            </script>
-                                        </form>
+                                        <button onclick="window.location.href = '<?php echo $preference->init_point; ?>'" type="button" class="mercadopago-button">Pagar la compra</button>
+
+
+
+                                        <!--                                        <form action="/procesar-pago" method="POST">
+                                                                                    <script data-button-label="Pagar la compra"
+                                                                                            src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
+                                                                                            data-preference-id="<?php echo $preference->id; ?>">
+                                                                                    </script>
+                                                                                </form>-->
 
                                     </div>
                                 </div>
@@ -206,5 +217,5 @@ if (!isset($_POST['price']) || !isset($_POST['title']) || !isset($_POST['unit'])
 
         </div><div class="mp-mercadopago-checkout-wrapper" style="z-index:-2147483647;display:block;background:rgba(0, 0, 0, 0.7);border:0;overflow:hidden;visibility:hidden;margin:0;padding:0;position:fixed;left:0;top:0;width:0;opacity:0;height:0;transition:opacity 220ms ease-in;"> <svg class="mp-spinner" viewBox="25 25 50 50"> <circle class="mp-spinner-path" cx="50" cy="50" r="20" fill="none" stroke-miterlimit="10"></circle> </svg> </div><div class="mp-mercadopago-checkout-wrapper" style="z-index:-2147483647;display:block;background:rgba(0, 0, 0, 0.7);border:0;overflow:hidden;visibility:hidden;margin:0;padding:0;position:fixed;left:0;top:0;width:0;opacity:0;height:0;transition:opacity 220ms ease-in;"> <svg class="mp-spinner" viewBox="25 25 50 50"> <circle class="mp-spinner-path" cx="50" cy="50" r="20" fill="none" stroke-miterlimit="10"></circle> </svg> </div><div class="mp-mercadopago-checkout-wrapper" style="z-index:-2147483647;display:block;background:rgba(0, 0, 0, 0.7);border:0;overflow:hidden;visibility:hidden;margin:0;padding:0;position:fixed;left:0;top:0;width:0;opacity:0;height:0;transition:opacity 220ms ease-in;"> <svg class="mp-spinner" viewBox="25 25 50 50"> <circle class="mp-spinner-path" cx="50" cy="50" r="20" fill="none" stroke-miterlimit="10"></circle> </svg> </div><div class="mp-mercadopago-checkout-wrapper" style="z-index:-2147483647;display:block;background:rgba(0, 0, 0, 0.7);border:0;overflow:hidden;visibility:hidden;margin:0;padding:0;position:fixed;left:0;top:0;width:0;opacity:0;height:0;transition:opacity 220ms ease-in;"> <svg class="mp-spinner" viewBox="25 25 50 50"> <circle class="mp-spinner-path" cx="50" cy="50" r="20" fill="none" stroke-miterlimit="10"></circle> </svg> </div><div class="mp-mercadopago-checkout-wrapper" style="z-index:-2147483647;display:block;background:rgba(0, 0, 0, 0.7);border:0;overflow:hidden;visibility:hidden;margin:0;padding:0;position:fixed;left:0;top:0;width:0;opacity:0;height:0;transition:opacity 220ms ease-in;"> <svg class="mp-spinner" viewBox="25 25 50 50"> <circle class="mp-spinner-path" cx="50" cy="50" r="20" fill="none" stroke-miterlimit="10"></circle> </svg> </div><div class="mp-mercadopago-checkout-wrapper" style="z-index:-2147483647;display:block;background:rgba(0, 0, 0, 0.7);border:0;overflow:hidden;visibility:hidden;margin:0;padding:0;position:fixed;left:0;top:0;width:0;opacity:0;height:0;transition:opacity 220ms ease-in;"> <svg class="mp-spinner" viewBox="25 25 50 50"> <circle class="mp-spinner-path" cx="50" cy="50" r="20" fill="none" stroke-miterlimit="10"></circle> </svg> </div><div id="ac-gn-viewport-emitter"> </div></body></html>
 
-<script src="https://www.mercadopago.com/v2/security.js" view="home"></script>
+<script src="https://www.mercadopago.com/v2/security.js" view="item"></script>
 
