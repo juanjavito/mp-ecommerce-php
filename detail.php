@@ -94,7 +94,7 @@ if (!isset($_POST['price']) || !isset($_POST['title']) || !isset($_POST['unit'])
         "installments" => 6
     );
     
-    $preference->payer = array($payer);
+    $preference->payer = $payer;
     $preference->items = array($item);
     $preference->save();
     ?>
